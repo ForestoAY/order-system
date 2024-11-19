@@ -222,3 +222,26 @@
     }
 ]
 ```
+
+### **GET /api/types**
+
+Mengambil semua type produk yang tersedia.
+
+#### **Respon:**
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Electronic"
+  },
+  {
+    "id": 2,
+    "name": "Book"
+  },
+  {
+    "id": 3,
+    "name": "Food"
+  }
+]
+```
