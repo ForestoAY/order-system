@@ -2,9 +2,11 @@ package com.forestoay.ordersystem.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Product {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,4 +19,10 @@ public class Product {
   private Type type;
 
   private Double price;
+
+  public Product(String name, Type type, Double price) {
+    this.name = name;
+    this.type = type;
+    this.price = price;
+  }
 }
