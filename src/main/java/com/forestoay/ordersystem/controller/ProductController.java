@@ -1,5 +1,6 @@
 package com.forestoay.ordersystem.controller;
 
+import com.forestoay.ordersystem.dto.ProductRequest;
 import com.forestoay.ordersystem.model.Product;
 import com.forestoay.ordersystem.model.ResponseMessage;
 import com.forestoay.ordersystem.service.ProductService;
@@ -16,7 +17,7 @@ public class ProductController {
 
   @GetMapping
   public Page<Product> getProducts(@RequestParam int page, @RequestParam int size) {
-    return productService.getProducts(page, size);
+    return productService.getProducts(page, size); // Tetap menampilkan Type (id dan name)
   }
 
   @GetMapping("/{id}")
@@ -27,14 +28,15 @@ public class ProductController {
   }
 
   @PostMapping
-  public Product saveProduct(@RequestBody Product product) {
-    return productService.saveProduct(product);
+  public Product saveProduct(@RequestBody ProductRequest productRequest) {
+    return productService.saveProduct(productRequest);
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<ResponseMessage> updateProduct(@PathVariable Long id, @RequestBody Product updatedProduct) {
+  public ResponseEntity<ResponseMessage> updateProduct(@PathVariable Long id,
+      @RequestBody ProductRequest productRequest) {
     try {
-      productService.updateProduct(id, updatedProduct);
+      productService.updateProduct(id, productRequest);
       return ResponseEntity.ok(new ResponseMessage("Product with ID " + id + " has been updated."));
     } catch (RuntimeException e) {
       return ResponseEntity.status(404).body(new ResponseMessage(e.getMessage()));
